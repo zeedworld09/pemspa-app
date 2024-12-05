@@ -1,0 +1,4 @@
+streamlit
+plotly
+geopy
+streamlit-option-menu
