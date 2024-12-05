@@ -3,6 +3,16 @@ import streamlit as st
 import plotly.graph_objects as go
 from geopy.geocoders import Nominatim
 
+# Streamlit App Configuration
+st.set_page_config(page_title="Great Circle Distance Calculator", page_icon="🌍")
+
+# Display Logo and Web Name
+col1, col2 = st.columns([1, 4])
+with col1:
+    st.image("image.png", width=100)  # Ganti "image.png" dengan file logo Anda
+with col2:
+    st.title("Great Circle Distance Calculator 🌍")
+
 # Function to get coordinates based on city name
 def get_coordinates(city_name):
     geolocator = Nominatim(user_agent="my_geo_app")
@@ -114,9 +124,6 @@ def create_map(segmen, koordinat1, koordinat2, projection="orthographic"):
     
     return fig
 
-# Streamlit App
-st.title("Great Circle Distance Calculator")
-
 # Sidebar Menu as Dropdown
 menu = st.sidebar.selectbox("Select Menu", ["Calculate Distance", "App Information"])
 
@@ -158,10 +165,7 @@ if menu == "Calculate Distance":
         projection = st.sidebar.selectbox("Select Map Type", ["Globe", "Map"])
         
         # Set projection type based on selection
-        if projection == "Globe":
-            projection_type = "orthographic"
-        else:
-            projection_type = "mercator"
+        projection_type = "orthographic" if projection == "Globe" else "mercator"
         
         fig = create_map(segmen, koordinat1, koordinat2, projection_type)
         st.plotly_chart(fig, use_container_width=True)
