@@ -6,6 +6,9 @@ from geopy.geocoders import Nominatim
 # Streamlit App Configuration
 st.set_page_config(page_title="Great Circle Distance Calculator", page_icon="🌍")
 
+# Display Web Name Only
+st.title("Great Circle Distance Calculator 🌍")
+
 # Function to get coordinates based on city name
 def get_coordinates(city_name):
     geolocator = Nominatim(user_agent="my_geo_app")
